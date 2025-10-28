@@ -7,7 +7,7 @@ DB_PASS = "clarapost"
 
 
 def get_connection():
-    """Cria a conexão com o banco PostgreSQL"""
+    
     try:
         conn = psycopg2.connect(
             host=DB_HOST,
@@ -17,12 +17,12 @@ def get_connection():
         )
         return conn
     except Exception as e:
-        print("❌ Erro ao conectar no banco:", e)
+        print(" Erro ao conectar no banco:", e)
         raise
 
 
 def init_db():
-    """Cria tabela de usuários se não existir"""
+    
     conn = get_connection()
     cursor = conn.cursor()
     try:
@@ -35,10 +35,10 @@ def init_db():
             );
         """)
         conn.commit()
-        print("✅ Banco inicializado com sucesso.")
+        print("Banco inicializado com sucesso.")
     except Exception as e:
         conn.rollback()
-        print("❌ Erro ao inicializar o banco:", e)
+        print("Erro ao inicializar o banco:", e)
     finally:
         cursor.close()
         conn.close()
